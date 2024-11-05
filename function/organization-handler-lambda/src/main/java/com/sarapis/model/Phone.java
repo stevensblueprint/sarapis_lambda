@@ -5,12 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Program {
-    private String name;
-    private String alternateName;
-    private Service service;
+public class Phone {
+    private String number;
+    private String extension;
+    private String type;
+    private String language;
+    private String description;
 }

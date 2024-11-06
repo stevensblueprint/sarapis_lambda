@@ -8,10 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.services.dynamodb.model.QueryRequest;
 import software.amazon.lambda.powertools.logging.Logging;
 
-import java.util.HashMap;
 import java.util.Map;
 
 

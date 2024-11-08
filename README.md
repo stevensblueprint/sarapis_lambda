@@ -18,6 +18,30 @@ Invoke the lambda
 sam local invoke OrganizationLambdaTest --event event.json
 ```
 
+## Start Development Server
+You start an http server to invoke the Lambda function. If you look at the
+`template.yaml` file, you will find the following definition:
+```yaml
+Events:
+Api:
+  Type: Api
+  Properties:
+    Path: /organizations
+    Method: GET
+```
+This will publish a GET HTTP endpoint on `http://127.0.0.1:3000/organizations` that will invoke the lambda.
+If you want to test any other endpoint you will need to change the `Path` and `Method` property in the `template.yaml` file.
+
+You can start the development server running
+```bash
+cd function/organization-handler-lambda
+sam build
+sam local start-api
+```
+Any changes made to the Lambda function will be reflected automatically without having to run
+`sam local start-api`. However, if you make any changes to the `template.yaml` file you will need
+to run `sam build`.
+
 ## Test with locally running DynamoDB
 Spin up the docker container with DynamoDB
 ```bash

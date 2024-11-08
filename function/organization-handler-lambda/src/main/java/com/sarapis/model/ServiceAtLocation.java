@@ -10,13 +10,14 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Phone {
+public class ServiceAtLocation {
     private UUID id;
-    private String number;
-    private int extension;
-    private String type;
-    private String description;
-    private List<Language> languages;
+    private String name;
+    private List<ServiceArea> serviceAreas;
+    private List<Contact> contacts;
+    private List<Phone> phones;
+    private List<Schedule> schedules;
+    private Location location;
     private List<Attribute> attributes;
     private List<Metadata> metadata;
 }

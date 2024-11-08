@@ -10,13 +10,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Phone {
+public class TaxonomyTerm {
     private UUID id;
-    private String number;
-    private int extension;
-    private String type;
+    private String code;
+    private String name;
     private String description;
-    private List<Language> languages;
-    private List<Attribute> attributes;
+    private UUID parentId;
+    private String taxonomy;
+    private TaxonomyTerm taxonomyDetail;
+    private String language;
+    private String termUri;
     private List<Metadata> metadata;
 }

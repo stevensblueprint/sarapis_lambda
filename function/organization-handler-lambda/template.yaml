@@ -1,0 +1,7 @@
+Resources:
+  OrganizationLambdaTest:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.sarapis.lambda.OrganizationHandlerLambda::handleRequest
+      Runtime: java21
+      CodeUri: ./

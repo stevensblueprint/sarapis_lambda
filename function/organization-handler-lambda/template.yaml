@@ -9,3 +9,9 @@ Resources:
         Variables:
           ACCESS_KEY: FAKEID
           SECRET_KEY: FAKEKEY
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /organizations
+            Method: GET

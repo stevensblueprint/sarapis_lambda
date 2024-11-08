@@ -50,12 +50,16 @@ public class OrganizationHandlerLambda implements RequestHandler<APIGatewayProxy
                         responseEvent.setBody(event.getBody());
                         responseEvent.setStatusCode(400);
                     }
+                    break;
                 case "POST":
                     logger.info("Received POST request: {}", event.getBody());
+                    break;
                 case "PUT":
                     logger.info("Received PUT request: {}", event.getBody());
+                    break;
                 case "DELETE":
                     logger.info("Received DELETE request: {}", event.getBody());
+                    break;
                 default:
                     logger.error("Unsupported HTTP method: {}", HTTPMethod);
                     responseEvent.setBody("Unsupported HTTP method");

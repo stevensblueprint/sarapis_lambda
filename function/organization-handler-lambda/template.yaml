@@ -5,3 +5,7 @@ Resources:
       Handler: com.sarapis.lambda.OrganizationHandlerLambda::handleRequest
       Runtime: java21
       CodeUri: ./
+      Environment:
+        Variables:
+          ACCESS_KEY: FAKEID
+          SECRET_KEY: FAKEKEY

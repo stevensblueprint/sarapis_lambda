@@ -3,16 +3,34 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sarapis.dagger.DaggerOrganizationComponent;
+import com.sarapis.dagger.OrganizationComponent;
+import com.sarapis.model.Organization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.lambda.powertools.logging.Logging;
 
+import javax.inject.Inject;
 import java.util.Map;
 
 
 public class OrganizationHandlerLambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>{
     private static final Logger logger = LoggerFactory.getLogger(OrganizationHandlerLambda.class);
     private static final Map<String, String> HEADERS = Map.of("Content-Type", "application/json");
+
+    @Inject
+    ObjectMapper objectMapper;
+
+    @Inject
+    DynamoDbClient dynamoDbClient;
+
+    public OrganizationHandlerLambda() {
+        OrganizationComponent component = DaggerOrganizationComponent.create();
+        component.inject(this);
+    }
 
     @Override
     @Logging(clearState = true)
@@ -25,6 +43,12 @@ public class OrganizationHandlerLambda implements RequestHandler<APIGatewayProxy
             switch (HTTPMethod) {
                 case "GET":
                     logger.info("Received GET request: {}", event.getBody());
+                    try {
+                        Organization organization = objectMapper.readValue(event.getBody(), Organization.class);
+                    } catch (JsonProcessingException e) {
+                        responseEvent.setBody(event.getBody());
+                        responseEvent.setStatusCode(400);
+                    }
                     break;
                 case "POST":
                     logger.info("Received POST request: {}", event.getBody());

@@ -51,3 +51,5 @@ cdk.out
 
 # DynamoDB artifacts #
 dynamodb
+
+.aws-sam

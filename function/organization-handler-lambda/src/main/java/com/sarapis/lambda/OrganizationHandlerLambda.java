@@ -20,7 +20,6 @@ import java.util.Map;
 public class OrganizationHandlerLambda implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>{
     private static final Logger logger = LoggerFactory.getLogger(OrganizationHandlerLambda.class);
     private static final Map<String, String> HEADERS = Map.of("Content-Type", "application/json");
-    private static final String DOB_TABLE_NAME = "organizations";
 
     @Inject
     ObjectMapper objectMapper;

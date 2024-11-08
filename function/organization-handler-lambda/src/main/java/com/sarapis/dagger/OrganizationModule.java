@@ -13,11 +13,33 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
 
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 import java.net.URI;
 
 @Module
 public class OrganizationModule {
+
+    @Provides
+    @Singleton
+    @Named("DB_URI")
+    public String provideDbUri() {
+        return System.getenv().getOrDefault("DB_URI", "http://localhost:8080");
+    }
+
+    @Provides
+    @Singleton
+    @Named("ACCESS_KEY")
+    public String provideAccessKey() {
+        return System.getenv().getOrDefault("ACCESS_KEY", "FAKEID");
+    }
+
+    @Provides
+    @Singleton
+    @Named("SECRET_KEY")
+    public String provideSecretKey() {
+        return System.getenv().getOrDefault("SECRET_KEY", "FAKEKEY");
+    }
 
     @Provides
     @Singleton
@@ -32,15 +54,14 @@ public class OrganizationModule {
 
     @Provides
     @Singleton
-    public DynamoDbClient provideDynamoDbClient() {
-        String DB_URI = "http://localhost:8080";
-        String DUMMY_ACCESS_KEY = "FAKEID";
-        String DUMMY_SECRET_KEY = "FAKEKEY";
+    public DynamoDbClient provideDynamoDbClient(@Named("DB_URI") String dbUri, @Named("ACCESS_KEY") String accessKey,
+                                                @Named("SECRET_KEY") String secretKey) {
         return DynamoDbClient.builder()
-                .endpointOverride(URI.create(DB_URI))
+                .endpointOverride(URI.create(dbUri))
                 .httpClient(UrlConnectionHttpClient.builder().build())
                 .region(Region.US_EAST_1)
-                .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(DUMMY_ACCESS_KEY,DUMMY_SECRET_KEY)))
+                .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials
+                        .create(accessKey, secretKey)))
                 .build();
     }
 }

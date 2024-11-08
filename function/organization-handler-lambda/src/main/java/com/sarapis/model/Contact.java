@@ -10,13 +10,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Phone {
+public class Contact {
     private UUID id;
-    private String number;
-    private int extension;
-    private String type;
-    private String description;
-    private List<Language> languages;
+    private String name;
+    private String title;
+    private String department;
+    private String email;
+    private List<Phone> phones;
     private List<Attribute> attributes;
     private List<Metadata> metadata;
 }

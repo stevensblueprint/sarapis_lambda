@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,13 +17,21 @@ public class Organization {
     private String alternateName;
     private String description;
     private String email;
-    private String url;
-    private String taxStatus;
-    private String taxId;
-    private Date yearIncorporated;
+    private String website;
+    private List<Url> additionalWebsites;
+    private String taxStatus; // Deprecated
+    private String taxId; // Deprecated
+    private int yearIncorporated;
     private String legalStatus;
-    private Program program;
-    private Service service;
-    private List<OrganizationLocation> locations;
-    private Phone phone;
+    private String logo;
+    private String uri;
+    private UUID parentOrganizationId;
+    private List<Funding> funding;
+    private List<Contact> contacts;
+    private List<Phone> phones;
+    private List<Location> locations;
+    private List<Program> programs;
+    private List<OrganizationIdentifier> organizationIdentifiers;
+    private List<Attribute> attributes;
+    private List<Metadata> metadata;
 }

@@ -3,7 +3,7 @@ This repository contains the AWS Lambda functions to support CRUD operations for
 functions are vended behind an API and are listening to APIGatewayEvents.
 
 ## Invoke Lambda locally
-Install sam. (See [docs](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html#install-sam-cli-instructions)).
+Install sam (See [docs](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html#install-sam-cli-instructions)).
 
 Move to the `organization-handler-lambda`
 ```bash

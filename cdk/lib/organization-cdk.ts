@@ -23,7 +23,7 @@ export class OrganizationStack extends cdk.Stack {
 
     const organizationHandlerLambda = new Function(this, organizationHandlerLambdaFunctionName, {
       runtime: Runtime.JAVA_21,
-      code: Code.fromAsset('../function/organization-hanlder-lambda/target/organization-handler-lambda.jar'),
+      code: Code.fromAsset('../function/organization-handler-lambda/target/organization-handler-lambda.jar'),
       handler: 'com.sarapis.lambda.OrganizationHandlerLambda::handleRequest',
       functionName: organizationHandlerLambdaFunctionName,
       role: lambdaExecutionRole,

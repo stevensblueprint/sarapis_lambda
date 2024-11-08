@@ -6,12 +6,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import dagger.Module;
 import dagger.Provides;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
+
 
 import javax.inject.Singleton;
+import java.net.URI;
 
 @Module
 public class OrganizationModule {
+
     @Provides
     @Singleton
     public ObjectMapper provideObjectMapper() {
@@ -26,8 +33,14 @@ public class OrganizationModule {
     @Provides
     @Singleton
     public DynamoDbClient provideDynamoDbClient() {
+        String DB_URI = "http://localhost:8080";
+        String DUMMY_ACCESS_KEY = "FAKEID";
+        String DUMMY_SECRET_KEY = "FAKEKEY";
         return DynamoDbClient.builder()
-               .region(software.amazon.awssdk.regions.Region.US_EAST_1)
-               .build();
+                .endpointOverride(URI.create(DB_URI))
+                .httpClient(UrlConnectionHttpClient.builder().build())
+                .region(Region.US_EAST_1)
+                .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(DUMMY_ACCESS_KEY,DUMMY_SECRET_KEY)))
+                .build();
     }
 }

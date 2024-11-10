@@ -11,11 +11,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Attribute {
-    private UUID id;
-    private String linkType;
-    private String linkEntity;
-    private String value;
-    private TaxonomyTerm taxonomyTerm;
-    private List<Metadata> metadata;
-    private String label;
+  private UUID id;
+  private String linkType;
+  private String linkEntity;
+  private String value;
+  private TaxonomyTerm taxonomyTerm;
+  private List<Metadata> metadata;
+  private String label;
 }

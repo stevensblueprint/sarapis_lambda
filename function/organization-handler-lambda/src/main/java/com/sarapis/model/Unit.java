@@ -11,11 +11,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Unit {
-    private UUID id;
-    private String name;
-    private String scheme;
-    private String identifier;
-    private String uri;
-    private List<Attribute> attributes;
-    private List<Metadata> metadata;
+  private UUID id;
+  private String name;
+  private String scheme;
+  private String identifier;
+  private String uri;
+  private List<Attribute> attributes;
+  private List<Metadata> metadata;
 }

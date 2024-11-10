@@ -16,54 +16,56 @@ import javax.inject.Inject;
 import java.util.Map;
 
 public class OrganizationHandlerLambda
-        implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private static final Logger logger = LoggerFactory.getLogger(OrganizationHandlerLambda.class);
-    private static final Map<String, String> HEADERS = Map.of("Content-Type", "application/json");
+    implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+  private static final Logger logger = LoggerFactory.getLogger(OrganizationHandlerLambda.class);
+  private static final Map<String, String> HEADERS = Map.of("Content-Type", "application/json");
 
-    @Inject
-    ObjectMapper objectMapper;
+  @Inject
+  ObjectMapper objectMapper;
 
-    @Inject
-    DynamoDbClient dynamoDbClient;
+  @Inject
+  DynamoDbClient dynamoDbClient;
 
-    public OrganizationHandlerLambda() {
-        OrganizationComponent component = DaggerOrganizationComponent.create();
-        component.inject(this);
+  public OrganizationHandlerLambda() {
+    OrganizationComponent component = DaggerOrganizationComponent.create();
+    component.inject(this);
+  }
+
+  @Override
+  @Logging(clearState = true)
+  public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent event,
+      Context context) {
+    APIGatewayProxyResponseEvent responseEvent =
+        new APIGatewayProxyResponseEvent().withHeaders(HEADERS);
+    try {
+      logger.info("Received HTTP request: {}", event.getHttpMethod());
+      String HTTPMethod = event.getHttpMethod();
+      switch (HTTPMethod) {
+        case "GET":
+          logger.info("Received GET request: {}", event.getBody());
+          break;
+        case "POST":
+          logger.info("Received POST request: {}", event.getBody());
+          break;
+        case "PUT":
+          logger.info("Received PUT request: {}", event.getBody());
+          break;
+        case "DELETE":
+          logger.info("Received DELETE request: {}", event.getBody());
+          break;
+        default:
+          logger.error("Unsupported HTTP method: {}", HTTPMethod);
+          responseEvent.setBody("Unsupported HTTP method");
+          responseEvent.setStatusCode(405);
+      }
+      return responseEvent;
+
+    } catch (Exception e) {
+      logger.error(e.getMessage(), e);
+      responseEvent.setBody(e.getMessage());
+      responseEvent.setStatusCode(500);
     }
-
-    @Override
-    @Logging(clearState = true)
-    public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent event, Context context) {
-        APIGatewayProxyResponseEvent responseEvent = new APIGatewayProxyResponseEvent().withHeaders(HEADERS);
-        try {
-            logger.info("Received HTTP request: {}", event.getHttpMethod());
-            String HTTPMethod = event.getHttpMethod();
-            switch (HTTPMethod) {
-            case "GET":
-                logger.info("Received GET request: {}", event.getBody());
-                break;
-            case "POST":
-                logger.info("Received POST request: {}", event.getBody());
-                break;
-            case "PUT":
-                logger.info("Received PUT request: {}", event.getBody());
-                break;
-            case "DELETE":
-                logger.info("Received DELETE request: {}", event.getBody());
-                break;
-            default:
-                logger.error("Unsupported HTTP method: {}", HTTPMethod);
-                responseEvent.setBody("Unsupported HTTP method");
-                responseEvent.setStatusCode(405);
-            }
-            return responseEvent;
-
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            responseEvent.setBody(e.getMessage());
-            responseEvent.setStatusCode(500);
-        }
-        return responseEvent;
-    }
+    return responseEvent;
+  }
 
 }

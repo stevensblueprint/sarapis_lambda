@@ -11,8 +11,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Funding {
-    private UUID id;
-    private String source;
-    private List<Attribute> attributes;
-    private List<Metadata> metadata;
+  private UUID id;
+  private String source;
+  private List<Attribute> attributes;
+  private List<Metadata> metadata;
 }

@@ -11,10 +11,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class OrganizationIdentifier {
-    private UUID id;
-    private String identifierScheme;
-    private String identifierType;
-    private String identifier;
-    private List<Attribute> attributes;
-    private List<Metadata> metadata;
+  private UUID id;
+  private String identifierScheme;
+  private String identifierType;
+  private String identifier;
+  private List<Attribute> attributes;
+  private List<Metadata> metadata;
 }

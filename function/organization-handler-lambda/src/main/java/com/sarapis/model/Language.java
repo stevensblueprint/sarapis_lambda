@@ -11,10 +11,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Language {
-  private UUID id;
-  private String name;
-  private String code;
-  private String note;
-  private List<Attribute> attributes;
-  private List<Metadata> metadata;
+    private UUID id;
+    private String name;
+    private String code;
+    private String note;
+    private List<Attribute> attributes;
+    private List<Metadata> metadata;
 }

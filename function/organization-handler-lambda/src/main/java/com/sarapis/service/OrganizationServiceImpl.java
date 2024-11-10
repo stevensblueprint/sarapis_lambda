@@ -6,7 +6,6 @@ import com.sarapis.exceptions.OrganizationNotFoundException;
 import com.sarapis.exceptions.OrganizationServiceLogicException;
 import com.sarapis.model.Organization;
 import java.util.List;
-import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,7 +62,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public Organization updateOrganization(UUID id, Organization organization) {
+    public Organization updateOrganization(String id, Organization organization) {
         Organization dbOrganization = dynamoDBMapper.load(Organization.class, id);
         if (dbOrganization != null) {
             dbOrganization.setName(organization.getName());
@@ -83,7 +82,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public void deleteOrganization(UUID id) {
+    public void deleteOrganization(String id) {
         Organization organization = dynamoDBMapper.load(Organization.class, id);
         if (organization != null) {
             dynamoDBMapper.delete(organization);

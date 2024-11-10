@@ -4,9 +4,11 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sarapis.dagger.DaggerOrganizationComponent;
 import com.sarapis.dagger.OrganizationComponent;
+import com.sarapis.exceptions.OrganizationNotFoundException;
 import com.sarapis.exceptions.OrganizationServiceLogicException;
 import com.sarapis.model.Organization;
 import com.sarapis.service.OrganizationService;
@@ -41,35 +43,25 @@ public class OrganizationHandlerLambda
         try {
             logger.info("Received HTTP request: {}", event.getHttpMethod());
             String HTTPMethod = event.getHttpMethod();
+            Map<String, String> pathParameters = event.getPathParameters();
             switch (HTTPMethod) {
             case "GET":
-                logger.info("Received GET request: {}", event.getBody());
-                try {
-                    List<Organization> organizations = organizationService.getAllOrganizations();
-                    logger.info("Organizations: {}", organizations);
-                } catch (OrganizationServiceLogicException e) {
-                    logger.error("Failed to get organizations: {}", e.getMessage());
-                    responseEvent.setBody(e.getMessage());
-                    responseEvent.setStatusCode(500);
-                    return responseEvent;
+                if (pathParameters != null && pathParameters.containsKey("id")) {
+                    return handleGetOrganizationById(event, responseEvent);
                 }
-                break;
+                return handleGetAllOrganizations(event, responseEvent);
             case "POST":
-                logger.info("Received POST request: {}", event.getBody());
-                break;
+                return handleCreateOrganization(event, responseEvent);
             case "PUT":
-                logger.info("Received PUT request: {}", event.getBody());
-                break;
+                return handleUpdateOrganization(event, responseEvent);
             case "DELETE":
-                logger.info("Received DELETE request: {}", event.getBody());
-                break;
+                return handleDeleteOrganization(event, responseEvent);
             default:
                 logger.error("Unsupported HTTP method: {}", HTTPMethod);
                 responseEvent.setBody("Unsupported HTTP method");
                 responseEvent.setStatusCode(405);
+                return responseEvent;
             }
-            return responseEvent;
-
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             responseEvent.setBody(e.getMessage());
@@ -78,4 +70,88 @@ public class OrganizationHandlerLambda
         return responseEvent;
     }
 
+    private APIGatewayProxyResponseEvent handleGetAllOrganizations(APIGatewayProxyRequestEvent requestEvent,
+            APIGatewayProxyResponseEvent responseEvent) {
+        try {
+            List<Organization> organizations = organizationService.getAllOrganizations();
+            responseEvent.setBody(objectMapper.writeValueAsString(organizations));
+            responseEvent.setStatusCode(200);
+            return responseEvent;
+        } catch (OrganizationServiceLogicException | JsonProcessingException e) {
+            logger.error("Failed to get all organizations: {}", e.getMessage());
+            responseEvent.setBody(e.getMessage());
+            responseEvent.setStatusCode(500);
+            return responseEvent;
+        }
+    }
+
+    private APIGatewayProxyResponseEvent handleGetOrganizationById(APIGatewayProxyRequestEvent requestEvent,
+            APIGatewayProxyResponseEvent responseEvent) {
+        String id = requestEvent.getPathParameters().get("id");
+        try {
+            Organization organization = organizationService.getOrganizationById(id);
+            responseEvent.setBody(objectMapper.writeValueAsString(organization));
+            responseEvent.setStatusCode(200);
+            return responseEvent;
+        } catch (OrganizationNotFoundException e) {
+            logger.error("Organization not found: {}", id);
+            responseEvent.setBody(e.getMessage());
+            responseEvent.setStatusCode(404);
+            return responseEvent;
+        } catch (OrganizationServiceLogicException | JsonProcessingException e) {
+            logger.error("Failed to retrieve organization with id {}", id);
+            responseEvent.setBody(e.getMessage());
+            responseEvent.setStatusCode(500);
+            return responseEvent;
+        }
+    }
+
+    private APIGatewayProxyResponseEvent handleCreateOrganization(APIGatewayProxyRequestEvent requestEvent,
+            APIGatewayProxyResponseEvent responseEvent) {
+        try {
+            Organization organization = objectMapper.readValue(requestEvent.getBody(), Organization.class);
+            organization = organizationService.createOrganization(organization);
+            responseEvent.setBody(objectMapper.writeValueAsString(organization));
+            responseEvent.setStatusCode(201);
+            return responseEvent;
+        } catch (OrganizationServiceLogicException | JsonProcessingException e) {
+            logger.error("Failed to create organization: {}", e.getMessage());
+            responseEvent.setBody(e.getMessage());
+            responseEvent.setStatusCode(500);
+            return responseEvent;
+        }
+    }
+
+    private APIGatewayProxyResponseEvent handleUpdateOrganization(APIGatewayProxyRequestEvent requestEvent,
+            APIGatewayProxyResponseEvent responseEvent) {
+        String id = requestEvent.getPathParameters().get("id");
+        try {
+            Organization organization = objectMapper.readValue(requestEvent.getBody(), Organization.class);
+            Organization updatedOrganization = organizationService.updateOrganization(id, organization);
+            responseEvent.setBody(objectMapper.writeValueAsString(updatedOrganization));
+            responseEvent.setStatusCode(200);
+            return responseEvent;
+        } catch (JsonProcessingException e) {
+            logger.error("Failed to update organization with id {}: {}", id, e.getMessage());
+            responseEvent.setBody(e.getMessage());
+            responseEvent.setStatusCode(500);
+            return responseEvent;
+        }
+    }
+
+    private APIGatewayProxyResponseEvent handleDeleteOrganization(APIGatewayProxyRequestEvent requestEvent,
+            APIGatewayProxyResponseEvent responseEvent) {
+        String id = requestEvent.getPathParameters().get("id");
+        try {
+            organizationService.deleteOrganization(id);
+            responseEvent.setBody("Organization deleted successfully");
+            responseEvent.setStatusCode(204);
+            return responseEvent;
+        } catch (Exception e) {
+            logger.error("Failed to delete organization with id {}: {}", id, e.getMessage());
+            responseEvent.setBody(e.getMessage());
+            responseEvent.setStatusCode(500);
+            return responseEvent;
+        }
+    }
 }

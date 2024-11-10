@@ -4,7 +4,6 @@ import com.sarapis.exceptions.OrganizationNotFoundException;
 import com.sarapis.exceptions.OrganizationServiceLogicException;
 import com.sarapis.model.Organization;
 import java.util.List;
-import java.util.UUID;
 
 public interface OrganizationService {
     List<Organization> getAllOrganizations() throws OrganizationServiceLogicException;
@@ -13,8 +12,8 @@ public interface OrganizationService {
 
     Organization createOrganization(Organization organization) throws OrganizationServiceLogicException;
 
-    Organization updateOrganization(UUID id, Organization organization);
+    Organization updateOrganization(String id, Organization organization);
 
-    void deleteOrganization(UUID id);
+    void deleteOrganization(String id);
 
 }

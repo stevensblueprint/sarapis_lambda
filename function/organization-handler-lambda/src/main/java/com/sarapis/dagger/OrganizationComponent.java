@@ -6,7 +6,7 @@ import dagger.Component;
 import javax.inject.Singleton;
 
 @Singleton
-@Component(modules = {OrganizationModule.class})
+@Component(modules = { OrganizationModule.class })
 public interface OrganizationComponent {
-  void inject(OrganizationHandlerLambda lambda);
+    void inject(OrganizationHandlerLambda lambda);
 }

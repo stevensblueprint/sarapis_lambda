@@ -11,10 +11,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Taxonomy {
-  private UUID id;
-  private String name;
-  private String description;
-  private String uri;
-  private String version;
-  private List<Metadata> metadata;
+    private UUID id;
+    private String name;
+    private String description;
+    private String uri;
+    private String version;
+    private List<Metadata> metadata;
 }

@@ -11,9 +11,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class RequiredDocument {
-  private UUID id;
-  private String document;
-  private String uri;
-  private List<Attribute> attributes;
-  private List<Metadata> metadata;
+    private UUID id;
+    private String document;
+    private String uri;
+    private List<Attribute> attributes;
+    private List<Metadata> metadata;
 }

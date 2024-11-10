@@ -10,12 +10,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Metadata {
-  private UUID id;
-  private String resourceType;
-  private String lastActionDate;
-  private String lastActionType;
-  private String fieldName;
-  private String previousValue;
-  private String replacementValue;
-  private String updatedBy;
+    private UUID id;
+    private String resourceType;
+    private String lastActionDate;
+    private String lastActionType;
+    private String fieldName;
+    private String previousValue;
+    private String replacementValue;
+    private String updatedBy;
 }

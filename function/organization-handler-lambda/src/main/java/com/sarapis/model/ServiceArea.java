@@ -11,12 +11,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ServiceArea {
-  private UUID id;
-  private String name;
-  private String description;
-  private String extent;
-  private String extentType;
-  private String uri;
-  private List<Attribute> attributes;
-  private List<Metadata> metadata;
+    private UUID id;
+    private String name;
+    private String description;
+    private String extent;
+    private String extentType;
+    private String uri;
+    private List<Attribute> attributes;
+    private List<Metadata> metadata;
 }

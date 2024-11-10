@@ -60,7 +60,7 @@ class OrganizationHandlerLambdaTest {
     }
 
     @Test
-    void testHandleRequestPUT() throws Exception {
+    void testHandleRequestPUT() {
         // Given
         String organizationId = "12345";
         APIGatewayProxyRequestEvent event = new APIGatewayProxyRequestEvent();
@@ -77,7 +77,7 @@ class OrganizationHandlerLambdaTest {
     }
 
     @Test
-    void testHandleRequestDELETE() throws Exception {
+    void testHandleRequestDELETE() {
         // Given
         String organizationId = "12345";
         APIGatewayProxyRequestEvent event = new APIGatewayProxyRequestEvent();

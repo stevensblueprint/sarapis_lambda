@@ -13,7 +13,6 @@ import com.sarapis.service.OrganizationService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.lambda.powertools.logging.Logging;
 
 import javax.inject.Inject;

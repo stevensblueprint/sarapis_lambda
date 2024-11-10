@@ -17,6 +17,12 @@ public class OrganizationServiceImpl implements OrganizationService {
         this.dynamoDBMapper = dynamoDBMapper;
     }
 
+    /**
+     * Retrieves all organizations from the database.
+     *
+     * @return A List of all Organization objects in the database.
+     * @throws OrganizationServiceLogicException If there's an error while fetching organizations.
+     */
     @Override
     public List<Organization> getAllOrganizations() throws OrganizationServiceLogicException {
         try {
@@ -28,6 +34,14 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
     }
 
+    /**
+     * Retrieves an organization by its ID.
+     *
+     * @param id The unique identifier of the organization.
+     * @return The Organization object with the specified ID.
+     * @throws OrganizationNotFoundException If no organization is found with the given ID.
+     * @throws OrganizationServiceLogicException If there's an error while fetching the organization.
+     */
     @Override
     public Organization getOrganizationById(String id)
             throws OrganizationNotFoundException, OrganizationServiceLogicException {
@@ -46,6 +60,13 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
     }
 
+    /**
+     * Creates a new organization in the database.
+     *
+     * @param organization The Organization object to be created.
+     * @return The created Organization object.
+     * @throws OrganizationServiceLogicException If there's an error while creating the organization.
+     */
     @Override
     public Organization createOrganization(Organization organization) throws OrganizationServiceLogicException {
         try {
@@ -61,6 +82,13 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
     }
 
+    /**
+     * Updates an existing organization in the database.
+     *
+     * @param id The unique identifier of the organization to be updated.
+     * @param organization The Organization object containing the updated information.
+     * @return The updated Organization object, or null if no organization was found with the given ID.
+     */
     @Override
     public Organization updateOrganization(String id, Organization organization) {
         Organization dbOrganization = dynamoDBMapper.load(Organization.class, id);
@@ -81,6 +109,11 @@ public class OrganizationServiceImpl implements OrganizationService {
         return dbOrganization;
     }
 
+    /**
+     * Deletes an organization from the database.
+     *
+     * @param id The unique identifier of the organization to be deleted.
+     */
     @Override
     public void deleteOrganization(String id) {
         Organization organization = dynamoDBMapper.load(Organization.class, id);

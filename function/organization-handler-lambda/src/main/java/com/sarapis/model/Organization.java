@@ -27,5 +27,13 @@ public class Organization {
     private String legalStatus;
     private String logo;
     private String uri;
+//    private List<Funding> funding;
+//    private List<Contact> contacts;
+//    private List<Phone> phones;
+//    private List<Location> locations;
+//    private List<Program> programs;
+//    private List<OrganizationIdentifier> organizationIdentifiers;
+//    private List<Attribute> attributes;
+//    private List<Metadata> metadata;
 
 }

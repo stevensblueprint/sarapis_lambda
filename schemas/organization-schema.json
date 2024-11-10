@@ -2,14 +2,14 @@
   "TableName": "organizations",
   "KeySchema": [
     {
-      "AttributeName": "ID",
+      "AttributeName": "id",
       "KeyType": "HASH"
     }
   ],
   "AttributeDefinitions": [
     {
-      "AttributeName": "ID",
-      "AttributeType": "N"
+      "AttributeName": "id",
+      "AttributeType": "S"
     },
     {
       "AttributeName": "name",

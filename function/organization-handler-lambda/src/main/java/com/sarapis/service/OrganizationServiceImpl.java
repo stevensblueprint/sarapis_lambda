@@ -4,7 +4,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.sarapis.exceptions.OrganizationNotFoundException;
 import com.sarapis.exceptions.OrganizationServiceLogicException;
-import com.sarapis.lambda.OrganizationHandlerLambda;
 import com.sarapis.model.Organization;
 import java.util.List;
 import java.util.UUID;

@@ -25,7 +25,7 @@ public class OrganizationModule {
     @Singleton
     @Named("DB_URI")
     public String provideDbUri() {
-        return System.getenv().getOrDefault("DB_URI", "http://localhost:8080");
+        return System.getenv().getOrDefault("DB_URI", "http://host.docker.internal:8000");
     }
 
     @Provides

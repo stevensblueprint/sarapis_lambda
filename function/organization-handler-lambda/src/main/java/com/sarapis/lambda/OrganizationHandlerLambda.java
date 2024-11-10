@@ -36,17 +36,18 @@ public class OrganizationHandlerLambda
         component.inject(this);
     }
 
-        /**
-     * Handles incoming API Gateway requests for organization-related operations.
-     * This method routes the request to the appropriate handler based on the HTTP method
-     * and path parameters.
+    /**
+     * Handles incoming API Gateway requests for organization-related operations. This method routes the request to the
+     * appropriate handler based on the HTTP method and path parameters.
      *
-     * @param event   The APIGatewayProxyRequestEvent containing information about the HTTP request,
-     *                including method, path parameters, and body.
-     * @param context The Context object provides methods to access information about the
-     *                current execution environment.
-     * @return APIGatewayProxyResponseEvent An object containing the response to be sent back
-     *         to the client, including status code, headers, and body.
+     * @param event
+     *            The APIGatewayProxyRequestEvent containing information about the HTTP request, including method, path
+     *            parameters, and body.
+     * @param context
+     *            The Context object provides methods to access information about the current execution environment.
+     *
+     * @return APIGatewayProxyResponseEvent An object containing the response to be sent back to the client, including
+     *         status code, headers, and body.
      */
     @Override
     @Logging(clearState = true)

@@ -21,7 +21,9 @@ public class OrganizationServiceImpl implements OrganizationService {
      * Retrieves all organizations from the database.
      *
      * @return A List of all Organization objects in the database.
-     * @throws OrganizationServiceLogicException If there's an error while fetching organizations.
+     *
+     * @throws OrganizationServiceLogicException
+     *             If there's an error while fetching organizations.
      */
     @Override
     public List<Organization> getAllOrganizations() throws OrganizationServiceLogicException {
@@ -37,10 +39,15 @@ public class OrganizationServiceImpl implements OrganizationService {
     /**
      * Retrieves an organization by its ID.
      *
-     * @param id The unique identifier of the organization.
+     * @param id
+     *            The unique identifier of the organization.
+     *
      * @return The Organization object with the specified ID.
-     * @throws OrganizationNotFoundException If no organization is found with the given ID.
-     * @throws OrganizationServiceLogicException If there's an error while fetching the organization.
+     *
+     * @throws OrganizationNotFoundException
+     *             If no organization is found with the given ID.
+     * @throws OrganizationServiceLogicException
+     *             If there's an error while fetching the organization.
      */
     @Override
     public Organization getOrganizationById(String id)
@@ -63,9 +70,13 @@ public class OrganizationServiceImpl implements OrganizationService {
     /**
      * Creates a new organization in the database.
      *
-     * @param organization The Organization object to be created.
+     * @param organization
+     *            The Organization object to be created.
+     *
      * @return The created Organization object.
-     * @throws OrganizationServiceLogicException If there's an error while creating the organization.
+     *
+     * @throws OrganizationServiceLogicException
+     *             If there's an error while creating the organization.
      */
     @Override
     public Organization createOrganization(Organization organization) throws OrganizationServiceLogicException {
@@ -85,8 +96,11 @@ public class OrganizationServiceImpl implements OrganizationService {
     /**
      * Updates an existing organization in the database.
      *
-     * @param id The unique identifier of the organization to be updated.
-     * @param organization The Organization object containing the updated information.
+     * @param id
+     *            The unique identifier of the organization to be updated.
+     * @param organization
+     *            The Organization object containing the updated information.
+     *
      * @return The updated Organization object, or null if no organization was found with the given ID.
      */
     @Override
@@ -112,7 +126,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     /**
      * Deletes an organization from the database.
      *
-     * @param id The unique identifier of the organization to be deleted.
+     * @param id
+     *            The unique identifier of the organization to be deleted.
      */
     @Override
     public void deleteOrganization(String id) {

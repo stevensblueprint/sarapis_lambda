@@ -48,3 +48,11 @@ Spin up the docker container with DynamoDB
 docker-compose up -d
 ```
 This will create a container with DynamoDB. The database can be accessed in port 8080.
+
+## Formatting
+We will be following the [Google Java Style](https://google.github.io/styleguide/javaguide.html) Guide.
+To format your code before pushing you need to run the formatter:
+```bash
+cd function/organization-handler-lambda
+mvn formatter:format
+```

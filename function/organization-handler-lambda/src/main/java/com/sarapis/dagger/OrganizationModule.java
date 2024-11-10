@@ -44,6 +44,13 @@ public class OrganizationModule {
 
     @Provides
     @Singleton
+    @Named("REGION")
+    public String provideRegion() {
+        return System.getenv().getOrDefault("REGION", "us-east-1");
+    }
+
+    @Provides
+    @Singleton
     public ObjectMapper provideObjectMapper() {
         final ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -57,8 +64,8 @@ public class OrganizationModule {
     @Singleton
     @Named("amazonDynamoDB")
     public AmazonDynamoDB provideAmazonDynamoDB(@Named("DB_URI") String dbUri, @Named("ACCESS_KEY") String accessKey,
-            @Named("SECRET_KEY") String secretKey) {
-        return AmazonDynamoDBClient.builder().withEndpointConfiguration(new EndpointConfiguration(dbUri, "us-east-1"))
+            @Named("SECRET_KEY") String secretKey, @Named("REGION") String region) {
+        return AmazonDynamoDBClient.builder().withEndpointConfiguration(new EndpointConfiguration(dbUri, region))
                 .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
                 .build();
     }

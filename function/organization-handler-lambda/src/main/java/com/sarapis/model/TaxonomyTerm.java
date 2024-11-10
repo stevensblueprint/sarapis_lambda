@@ -11,14 +11,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class TaxonomyTerm {
-    private UUID id;
-    private String code;
-    private String name;
-    private String description;
-    private UUID parentId;
-    private String taxonomy;
-    private TaxonomyTerm taxonomyDetail;
-    private String language;
-    private String termUri;
-    private List<Metadata> metadata;
+  private UUID id;
+  private String code;
+  private String name;
+  private String description;
+  private UUID parentId;
+  private String taxonomy;
+  private TaxonomyTerm taxonomyDetail;
+  private String language;
+  private String termUri;
+  private List<Metadata> metadata;
 }

@@ -11,10 +11,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class Accessibility {
-    private UUID id;
-    private String description;
-    private String details;
-    private String url;
-    private List<Attribute> attributes;
-    private List<Metadata> metadata;
+  private UUID id;
+  private String description;
+  private String details;
+  private String url;
+  private List<Attribute> attributes;
+  private List<Metadata> metadata;
 }

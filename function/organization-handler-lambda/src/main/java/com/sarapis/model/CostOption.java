@@ -11,13 +11,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class CostOption {
-    private UUID id;
-    private String validFrom;
-    private String validTo;
-    private String option;
-    private String currency;
-    private int amount;
-    private String amountDescription;
-    private List<Attribute> attributes;
-    private List<Metadata> metadata;
+  private UUID id;
+  private String validFrom;
+  private String validTo;
+  private String option;
+  private String currency;
+  private int amount;
+  private String amountDescription;
+  private List<Attribute> attributes;
+  private List<Metadata> metadata;
 }

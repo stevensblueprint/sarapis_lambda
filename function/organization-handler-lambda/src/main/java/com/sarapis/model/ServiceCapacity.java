@@ -11,12 +11,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class ServiceCapacity {
-    private UUID id;
-    private Unit unit;
-    private int available;
-    private int maximum;
-    private String description;
-    private String updated;
-    private List<Attribute> attributes;
-    private List<Metadata> metadata;
+  private UUID id;
+  private Unit unit;
+  private int available;
+  private int maximum;
+  private String description;
+  private String updated;
+  private List<Attribute> attributes;
+  private List<Metadata> metadata;
 }

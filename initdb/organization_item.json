@@ -1,0 +1,12 @@
+{
+  "ID": {"N": "1"},
+  "name": {"S": "Open Source Initiative"},
+  "alternateName": {"S": "OSI"},
+  "description": {"S": "A non-profit organization that promotes open-source software."},
+  "email": {"S": "contact@opensource.org"},
+  "website": {"S": "https://opensource.org"},
+  "yearIncorporated": {"N": "1998"},
+  "legalStatus": {"S": "Non-Profit"},
+  "logo": {"S": "https://opensource.org/logo.png"},
+  "uri": {"S": "/organizations/osi"}
+}

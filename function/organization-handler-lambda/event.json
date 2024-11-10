@@ -6,68 +6,7 @@
     "Accept": "application/json",
     "Authorization": "Bearer example-token",
     "Content-Type": "application/json",
-    "Host": "example.execute-api.us-west-2.amazonaws.com",
-    "X-Forwarded-For": "127.0.0.1",
-    "X-Forwarded-Port": "443",
-    "X-Forwarded-Proto": "https"
-  },
-  "multiValueHeaders": {
-    "Accept": [
-      "application/json"
-    ],
-    "Authorization": [
-      "Bearer example-token"
-    ]
-  },
-  "queryStringParameters": {
-    "param1": "value1",
-    "param2": "value2"
-  },
-  "multiValueQueryStringParameters": {
-    "param1": [
-      "value1"
-    ],
-    "param2": [
-      "value2a",
-      "value2b"
-    ]
-  },
-  "pathParameters": {
-    "id": "123"
-  },
-  "stageVariables": {
-    "stageVar1": "value1",
-    "stageVar2": "value2"
-  },
-  "requestContext": {
-    "resourceId": "123456",
-    "resourcePath": "/my-resource",
-    "httpMethod": "GET",
-    "extendedRequestId": "request-id",
-    "requestTime": "08/Nov/2024:19:03:58 +0000",
-    "path": "/dev/my-resource",
-    "accountId": "123456789012",
-    "protocol": "HTTP/1.1",
-    "stage": "dev",
-    "domainPrefix": "example",
-    "requestTimeEpoch": 1668012238000,
-    "requestId": "c67d47f1-0123-4567-89ab-abcdef123456",
-    "identity": {
-      "cognitoIdentityPoolId": null,
-      "accountId": null,
-      "cognitoIdentityId": null,
-      "caller": null,
-      "sourceIp": "127.0.0.1",
-      "principalOrgId": null,
-      "accessKey": null,
-      "cognitoAuthenticationType": null,
-      "cognitoAuthenticationProvider": null,
-      "userArn": null,
-      "userAgent": "PostmanRuntime/7.28.4",
-      "user": null
-    },
-    "domainName": "example.execute-api.us-west-2.amazonaws.com",
-    "apiId": "api-id"
+    "Host": "example.execute-api.us-west-2.amazonaws.com"
   },
   "body": "{\"key1\":\"value1\",\"key2\":\"value2\"}",
   "isBase64Encoded": false

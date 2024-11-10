@@ -12,6 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 @DynamoDBTable(tableName = "organizations")
 public class Organization {
     @DynamoDBHashKey(attributeName = "id")

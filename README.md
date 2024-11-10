@@ -43,7 +43,11 @@ Any changes made to the Lambda function will be reflected automatically without 
 to run `sam build`.
 
 ## Test with locally running DynamoDB
-Spin up the docker container with DynamoDB
+Make sure that the `init.sh` command is executable.
+```bash
+chmod +x initdb/init.sh
+```
+Spin up the docker container with DynamoDB.
 ```bash
 docker-compose up -d
 ```

@@ -10,10 +10,32 @@
     {
       "AttributeName": "ID",
       "AttributeType": "N"
+    },
+    {
+      "AttributeName": "name",
+      "AttributeType": "S"
     }
   ],
   "ProvisionedThroughput": {
     "ReadCapacityUnits": 5,
     "WriteCapacityUnits": 5
-  }
+  },
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "NameIndex",
+      "KeySchema": [
+        {
+          "AttributeName": "name",
+          "KeyType": "HASH"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    }
+  ]
 }

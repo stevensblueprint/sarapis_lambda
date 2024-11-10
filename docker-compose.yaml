@@ -20,9 +20,10 @@ services:
     image: amazon/aws-cli
     volumes:
       - "./schemas:/tmp/dynamo"
+      - "./initdb:/tmp/initdb"
     environment:
       AWS_ACCESS_KEY_ID: 'FAKEID'
       AWS_SECRET_ACCESS_KEY: 'FAKEKEY'
       AWS_DEFAULT_REGION: 'us-east-1'
     entrypoint: ["/bin/bash"]
-    command: '-c "for f in /tmp/dynamo/*.json; do aws dynamodb create-table --endpoint-url "http://dynamodb-local:8000" --cli-input-json file://"$${f#./}"; done"'
+    command: "-c \"/tmp/initdb/init.sh\""

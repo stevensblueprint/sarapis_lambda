@@ -49,8 +49,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public Organization createOrganization(Organization organization)
-        throws OrganizationServiceLogicException {
+    public Organization createOrganization(Organization organization) throws OrganizationServiceLogicException {
         try {
             dynamoDBMapper.save(organization);
             return organization;
@@ -59,7 +58,8 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new OrganizationServiceLogicException("Invalid argument provided: " + e.getMessage());
         } catch (Exception e) {
             logger.error("Failed to create organization", e);
-            throw new OrganizationServiceLogicException("An error occurred while creating the organization: " + e.getMessage());
+            throw new OrganizationServiceLogicException(
+                    "An error occurred while creating the organization: " + e.getMessage());
         }
     }
 

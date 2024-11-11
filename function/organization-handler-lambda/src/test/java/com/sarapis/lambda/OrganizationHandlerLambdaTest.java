@@ -55,8 +55,7 @@ class OrganizationHandlerLambdaTest {
 
         // When
         organizationHandlerLambda.handleRequest(event, context);
-        verify(organizationService, times(1))
-            .createOrganization(any(Organization.class));
+        verify(organizationService, times(1)).createOrganization(any(Organization.class));
     }
 
     @Test
@@ -72,8 +71,7 @@ class OrganizationHandlerLambdaTest {
 
         // When
         organizationHandlerLambda.handleRequest(event, context);
-        verify(organizationService, times(1))
-            .updateOrganization(eq(organizationId), any(Organization.class));
+        verify(organizationService, times(1)).updateOrganization(eq(organizationId), any(Organization.class));
     }
 
     @Test
@@ -88,7 +86,6 @@ class OrganizationHandlerLambdaTest {
 
         // When
         organizationHandlerLambda.handleRequest(event, context);
-        verify(organizationService, times(1))
-            .deleteOrganization(eq(organizationId));
+        verify(organizationService, times(1)).deleteOrganization(eq(organizationId));
     }
 }
